@@ -29,5 +29,5 @@ def run_query(data):
         json_obj = json.dumps(results)
         print(json_obj)
         return json_obj, 200
-    except:
-        return "error", 500
+    except sqlite3.Error as e:
+        return str(e), 500
