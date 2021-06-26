@@ -7,10 +7,16 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADER'] = 'Content-Type'
 
+@app.route("/", methods=['GET'])
+@cross_origin()
+def index():
+    return "You are not supposed to be here.", 200
+
 @app.route("/api/new", methods=['POST'])
 @cross_origin()
 def post_query():
     a, b = run_query(request.json)
+    print(request.json)
     return a, b
 
 def run_query(data):
